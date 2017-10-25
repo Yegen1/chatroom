@@ -2,12 +2,9 @@ var io = require("socket.io")();
 var _ = require("underscore");
 var useuList = [];
 io.on("connection",function(socket){
-	socket.io("login",function(user){
-		user.id = socket.id;
-		userList = push(user);
-		io.emit("userList",userList);
-		socket.emit("userInfo",user);
-		socket.broadcast.emit("loginInfo",user.name+"上线了");
+	console.log("一个用户连接了");
+	socket.on("toAll",function(msg){
+		io.emit("toAll",msg);
 	})
 })
 exports.listen = function(_server){

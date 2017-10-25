@@ -116,48 +116,8 @@
   </div>
 </div>
 <script src = "/socket.io/socket.io.js"></script>
-<script src="javascripts/jquery.min.js"</script>
-<script>
-	var socket = io();
-	console.log(socket);
-	io.on("connection",function(socket){
-	currentUserCount++;
-	socketList.push(socket);
-	io.emit("global",{currentUserCount});
-	console.log(socket);
-	console.log("a user connected");
-	socket.on("disconnect",function(){
-		currentUserCount--;
-		var index = socketList.indexOf(socket);
-		io.emit("global",{currentUserCount});
-		console.log("user disconnected");
-		io.emit('user disconnected');
-	});
-	socket.on("chat message",function(data){
-		console.log("message:",data)
-		socket.broadcast.emit("msg",data);
-	});
-	socket.on("tyting",function(data){
-		socket.broadcast.emit("typing",data);
-	});
-	socket.on("private message",function(from,msg){
-		console.log("I received a private msg by",from,"saying",msg);
-	});
-})
-io.on("connection",function(socket){
-	socket.on("liaotian",function(msg){
-		$(".msg-list-body").append("<p>炸</p>");
-	})
-})
-	$("#sendMsg").on("click",function(){
-		console.log($("#msg").val());
-		if (!($("#msg").val()=="")) {
-			socket.emit("sendmessage",{
-				"chatcontent":$("#msg").val();
-			})
-			$("#msg").val("");
-		}
-	})
-</script>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/chatroom.js"></script>
+<script src="javascripts/messageevent.js" ></script>
 </body>
 </html>
