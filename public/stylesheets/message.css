@@ -1,3 +1,6 @@
+html{
+	font-size: 16px;
+}
 .message-history {
     border-radius: 5px;
     border: 2px solid #EEE;
@@ -137,4 +140,25 @@
     width: 100%;
     height: 100%;
     border: none;
+}
+.msg-content > .systemhint{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	border: 1px solid red;
+	height: 100px;
+	width: 100px;
+	padding: 0;
+}
+.msg-content > .systemhint > li{
+	width: 100%;
+	height: 2rem;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid black;
+}
+.container{
+	position: absolute;
+	background: #fff;
 }

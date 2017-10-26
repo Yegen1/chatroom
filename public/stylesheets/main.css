@@ -10,6 +10,7 @@ body{
 ::selection {background:#4593BC;color:#FFFFFF;}
 
 .msg-content{
+	position: relative;
 	height:500px;
 	margin: -14px;
 	overflow-x: hidden;
