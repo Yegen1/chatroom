@@ -158,7 +158,7 @@ html{
 	overflow: hidden;
 	border: 1px solid black;
 }
-.container{
+.register {
 	position: absolute;
 	background: #fff;
 }

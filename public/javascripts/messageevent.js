@@ -17,20 +17,6 @@ function sendMessage(msg,isSelf){
 	msgHtml.children('.message-info').children('.message-content-box').children('.message-content').text(msg);
 	$('.msg-content').append(msgHtml);
 }
-//$("").on("click",function(){
-//	var name = $("").val();
-//	if($("").val() == ""){
-//		return;
-//	}
-//	var imgList = ["/images/1.jpg","/images/2.jpg","/images/3.jpg","/images/4.jpg"];
-//	var headPortraitNum = parseInt(Math.random()*5);
-//	var headPortrait = imgList[headPortraitNum];
-//	var usermessage = {
-//		name:name,
-//		headPortrait:headPortrait
-//	}
-//	socket.emit("login",usermessage);
-//})
 $(".user-content").on("click",function(event){
 	var target = event.target || event.srcElement;
 	if (target.nodeName == "A") {
@@ -44,7 +30,10 @@ $(".user-content").on("click",function(event){
 			msg:message
 		}
 		socket.emit("toOne",msgObj);
-		
 	}
-	
 })
+//$("#zhuce").on("click",function(){
+//	$.post("http://localhost:3000/users/register",{},function(json){
+//		console.log(1);
+//	})
+//})
