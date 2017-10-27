@@ -14,9 +14,23 @@ var session = require("express-session")
 var index = require('./routes/index');
 var users = require('./routes/users');
 var _ = require("underscore");
+var RedisStore = require("connect-redis")(session);
 
-
-
+app.use(cookieParser());
+app.use(function(req, res, next) {
+  if (req.url === '/users/login' || req.url === '/users/register') {
+    next();
+  } else {
+    if (!req.cookies.username) {
+      //:TODO 无效
+//    res.locals.message = common.errorMessage('当前操作需要需要');
+      return res.redirect('/users/login');
+      console.log("跳转到登录");
+    } else {
+      next();
+    }
+  }
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,13 +40,38 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', index);
 app.use('/users', users);
 
-// catch 404 and forward to error handler
+//判断是否登录
+
+//app.use(session({
+//		store:new RedisStore(options),
+//  secret: 'keyboard cat',
+//  resave: true,
+//  saveUninitialized: true,
+//  
+//}));
+app.get("/",function(res,req,next){
+	console.log(cookies);
+})
+//app.use((req, res, next) => {
+//if (req.url === '/users/login' || req.url === '/users/register' || req.url === '/questions') {
+//  next();
+//} else {
+//  if (!req.session.username) {
+//    //:TODO 无效
+//    res.locals.message = common.errorMessage('当前操作需要需要');
+//    console.log(res);
+//    return res.redirect('/users/login');
+//  } else {
+//    next();
+//  }
+//}
+//});
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -40,13 +79,10 @@ app.use(function(req, res, next) {
 });
 
 //使用session
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 // error handler
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

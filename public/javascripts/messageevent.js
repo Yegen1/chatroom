@@ -5,6 +5,14 @@ $("#sendMsg").on("click",function(){
 		return;
 	}
 	socket.emit("toAll",msg);
+	$.post("http://localhost:3000/users/toall",{msg:msg},function(json){
+//		console.log(json);
+		var message = json.result.message;
+		for (var i = 0 ; i < message.length ; i++) {
+			var chatmessage = message[i].message;
+			sendMessage(chatmessage,true);
+		}
+	});
 	$("#msg").val("");
 });
 
@@ -32,8 +40,3 @@ $(".user-content").on("click",function(event){
 		socket.emit("toOne",msgObj);
 	}
 })
-//$("#zhuce").on("click",function(){
-//	$.post("http://localhost:3000/users/register",{},function(json){
-//		console.log(1);
-//	})
-//})

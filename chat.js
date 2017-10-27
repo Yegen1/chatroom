@@ -1,8 +1,20 @@
 var io = require("socket.io")();
 var _ = require("underscore");
 var userList = [];
+let cookieParser = require("cookie-parser");
+let app = require("./app");
+
 io.on("connection",function(socket){
-	console.log("一个用户连接了");
+//app.use(function(req,res,next){
+//})
+io.use(function(socket,next){
+	console.log(socket.request.headers.cookie);
+})
+//console.log(req.cookies.username);
+//	$.post(http:localhost:3000/users/login,{},function(){
+//		
+//	}
+//	console.log(sessionStorage.username);
 //	socket.on("login",function(user){
 //		console.log(user);
 //		user.id = socket.id;
