@@ -21,14 +21,13 @@ router.get("/register",function (req,res,next){
 router.post("/register",function (req, res, next) {
 console.log("1");//  //得到用户填写的东西
 		let {username,password} = req.body;
-		chatusername = username;
+
 		console.log(username,password);
         //查询数据库中是不是有这个人
         User.findOne({"userName": username}, function (err, result) {
         	console.log(result);
             if (err) {
                 res.send("-3"); //服务器错误
-//              console.log("-3");
                 return;
             }
             if (result.length != 0) {
@@ -62,6 +61,8 @@ router.get("/login",function(req,res,next){
 router.post("/login",function (req, res, next) {
     //得到用户表单
    let {username,password} = req.body;
+		chatusername = username;
+   
 		console.log(username,password);
         //得到表单之后做的事情
         password = md5(md5(password) + "11");
@@ -83,7 +84,6 @@ router.post("/login",function (req, res, next) {
                 res.cookie("username",username,{
                 	maxAge:1000*60*30
                 });
-//              sessionStorage.username = username;
                 console.log(req.cookies.username);
                return res.redirect("../");  //登陆成功
             } else {
@@ -94,7 +94,10 @@ router.post("/login",function (req, res, next) {
     });
 router.post("/toall",function(req,res,next){
 let msg = req.body.msg;
- chatMessage.create({message:msg},(err,doc)=>{
+let nowtime = req.body.nowtime;
+console.log(nowtime);
+var chatusername = req.cookies.username;
+ chatMessage.create({message:msg,username:chatusername,nowtime:nowtime},(err,doc)=>{
  	if (err) {
  		console.log("上传到服务器失败");
  		return;
@@ -103,6 +106,11 @@ let msg = req.body.msg;
  		console.log("上传到服务器成功");
  	}
  })
+	
+})
+router.get("/historymessage",function(req,res,next){
+	chatusername = req.cookies.username;
+	console.log(chatusername);
 	chatMessage.find(function(err,docs){
 		if (err) {
         console.log("查找错误");
@@ -113,10 +121,23 @@ let msg = req.body.msg;
 				code:"1001",
 				result:{
 					message:docs,
-					username:chatusername,
+					username:chatusername
 				}
 			})
 		}
+	})
+})
+router.post("/removemessage",function(req,res,next){
+	let nowtime = req.body.nowtime;
+	console.log(nowtime);
+	chatMessage.remove({nowtime:nowtime},function(err){
+		if (err) {
+			console.log("删除错误");
+			return;
+		}
+		return res.json({
+			status:"删除成功"
+		})
 	})
 })
 module.exports = router;

@@ -1,27 +1,29 @@
 var io = require("socket.io")();
 var _ = require("underscore");
-var userList = [];
 let cookieParser = require("cookie-parser");
 let app = require("./app");
 
+var userList = [];
+var username;
 io.on("connection",function(socket){
-//app.use(function(req,res,next){
-//})
 io.use(function(socket,next){
-	console.log(socket.request.headers.cookie);
+	console.dir(socket.request.headers.cookie.split(";"));
+	var socket1 = socket.request.headers.cookie.split(";");
+	var socket2 = socket1[0].split("=");
+	username = socket2;
+	
 })
-//console.log(req.cookies.username);
-//	$.post(http:localhost:3000/users/login,{},function(){
-//		
-//	}
-//	console.log(sessionStorage.username);
-//	socket.on("login",function(user){
-//		console.log(user);
-//		user.id = socket.id;
-//		userList.push(user);
-//		io.emit("userInfo",user);
-//		socket.broadcast.emit("loginIn",user.name+"上线了");
-//	})
+socket.emit("login",username);
+	socket.broadcast.emit("login",username);
+	socket.on("login",function(user){
+		console.log(user);
+		console.log("1111111111");
+		user.id = socket.id;
+		userList.push(user);
+		io.emit("userList",userList);
+		socket.emit("userIn",user);
+		socket.broadcast.emit("loginIn",user.name+"上线了");
+	})
 	socket.on("toAll",function(msg){
 		io.emit("toAll",msg);
 	})

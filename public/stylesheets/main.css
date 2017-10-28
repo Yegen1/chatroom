@@ -16,6 +16,13 @@ body{
 	overflow-x: hidden;
 	padding: 15px;
 }
+#loadmore{
+	position: absolute;
+	left: 50%;
+	bottom: 10px;
+	color:#343434;
+	transform: translateX(-50%);
+}
 .msg-content ul{
 	
 }
