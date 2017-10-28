@@ -19,7 +19,7 @@ router.get("/register",function (req,res,next){
 	res.render("regist",{});
 })
 router.post("/register",function (req, res, next) {
-console.log("1");//  //得到用户填写的东西
+//得到用户填写的东西
 		let {username,password} = req.body;
 
 		console.log(username,password);
@@ -30,7 +30,7 @@ console.log("1");//  //得到用户填写的东西
                 res.send("-3"); //服务器错误
                 return;
             }
-            if (result.length != 0) {
+            if (result) {
                 res.send("-1"); //被占用
                 console.log("-1");
                 return;
@@ -47,6 +47,7 @@ console.log("1");//  //得到用户填写的东西
           		if (doc) {
           			res.locals.message = "注册成功";
           		}
+          		return res.redirect("./login");
 //              req.session.login = "1";
 //              req.session.username = username;
 console.log("1");

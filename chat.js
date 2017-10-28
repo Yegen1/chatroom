@@ -13,7 +13,7 @@ io.use(function(socket,next){
 	username = socket2;
 	
 })
-socket.emit("login",username);
+	socket.emit("login",username);
 	socket.broadcast.emit("login",username);
 	socket.on("login",function(user){
 		console.log(user);
