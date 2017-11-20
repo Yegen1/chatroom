@@ -23,7 +23,6 @@ app.use(function(req, res, next) {
   } else {
     if (!req.cookies.username) {
       //:TODO 无效
-//    res.locals.message = common.errorMessage('当前操作需要需要');
       return res.redirect('/users/login');
       console.log("跳转到登录");
     } else {
@@ -39,7 +38,9 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -55,23 +56,9 @@ app.use('/users', users);
 //  saveUninitialized: true,
 //  
 //}));
-app.get("/",function(res,req,next){
-	console.log(cookies);
-})
-//app.use((req, res, next) => {
-//if (req.url === '/users/login' || req.url === '/users/register' || req.url === '/questions') {
-//  next();
-//} else {
-//  if (!req.session.username) {
-//    //:TODO 无效
-//    res.locals.message = common.errorMessage('当前操作需要需要');
-//    console.log(res);
-//    return res.redirect('/users/login');
-//  } else {
-//    next();
-//  }
-//}
-//});
+//app.get("/",function(res,req,next){
+//	console.log(cookies);
+//})
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

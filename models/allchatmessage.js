@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 let allChatMessage = new Schema({
 	message:String,
 	username:String,
-	nowtime:String
+	nowtime:String,
+	messageclass:String
 });
 module.exports = mongoose.model("allChatMessage",allChatMessage);

@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
-    <title>登录</title>
-    <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
-    <link href="../css/jumbotron.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top: 120px;
-        }
-        #cuowukuang{
-            display: none;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/favicon.ico">
+  <title>登录</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <!-- Custom styles for this template -->
+  <link href="../css/jumbotron.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding-top: 120px;
+    }
+
+    #cuowukuang {
+      display: none;
+    }
+
+    .sortregister {
+      border: 1px solid #CCCCCC;
+      padding: 7px;
+      border-radius: 3px;
+      color: #333333;
+    }
+
+    .sortregister:hover {
+      text-decoration: none;
+      color: #333333;
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
     <!-- Example row of columns -->
     <div class="row col-lg-6">
-        <h1>登陆</h1>
+      <h1>登陆</h1>
 
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="username">用户名</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="用户名，可以是中文，不能和别人重复">
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="密码，至少6位">
-            </div>
-            <button type="submit" id="denglu" class="btn btn-default">登陆</button>
-        </form>
+      <form action="" method="post">
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input type="text" name="username" class="form-control" id="username" placeholder="用户名，可以是中文，不能和别人重复">
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="密码，至少6位">
+        </div>
+        <button type="submit" id="denglu" class="btn btn-default">登陆</button>
+        <a class="sortregister" href="http://localhost:3000/users/register">快速注册</a>
+      </form>
 
-        <div class="alert alert-danger" role="alert" id="cuowukuang"></div>
+      <div class="alert alert-danger" role="alert" id="cuowukuang"></div>
     </div>
-</div>
+  </div>
 
-<hr>
-
-<footer>
+  <hr>
+  <footer>
     <p>&copy; Company 2014</p>
-</footer>
-</div>
-<!-- /container -->
+  </footer>
+  </div>
+  <!-- /container -->
 
 
-<!-- Bootstrap core JavaScript
+  <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
- <script src="./../javascripts/jquery.min.js"></script>
- <script src="./../javascripts/loginsocket.js"></script>
-<!--<script src="/js/bootstrap.min.js"></script> -->
-
-<!--<script type="text/javascript">
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="./../javascripts/jquery.min.js"></script>
+  <script src="./../javascripts/loginsocket.js"></script>
+  <!--<script src="/js/bootstrap.min.js"></script> -->
+  <script>
+    //	$(".sortregister").on("click",function(){
+    //		$.get("http://localhost:3000/users/newregister",{},function(json){
+    //			console.log(1);
+    //		});
+    //	})
+  </script>
+  <!--<script type="text/javascript">
     $("input").focus(function(){
         $("#cuowukuang").fadeOut();
     });
@@ -83,6 +104,7 @@
            }
        });
    });-->
-<!--</script>-->
+  <!--</script>-->
 </body>
+
 </html>

@@ -19,7 +19,7 @@ body{
 #loadmore{
 	position: absolute;
 	left: 50%;
-	bottom: 10px;
+	bottom: 130px;
 	color:#343434;
 	transform: translateX(-50%);
 }
